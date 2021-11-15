@@ -1,17 +1,14 @@
-const buttonContainer = document.getElementById("button-container")
-const canvas = document.querySelector("canvas")
+// DOM Elements
+const buttonContainer = document.getElementById("play-button-container")
+const button = document.getElementById("play-button")
+const canvas = document.getElementById("audio")
 const ctx = canvas.getContext("2d")
 
-let requestedStream = false
-let isListening = false
+button.onclick = () => {
+  requestStartAudio()
+}
 
-let stream
-let analyser
-let frequencyData
-
-let startTime
-let timestamps = []
-
+// Constants
 const fftSize = 512
 const centerX = canvas.width / 2
 const centerY = canvas.height / 2
@@ -26,6 +23,17 @@ const needleTopMargin = canvas.width * 0.1
 const transparentStyle = "rgba(255, 255, 255, 0)"
 const translucentStyle = "rgba(255, 255, 255, 0.75)"
 const backgroundStyle = "rgba(255, 255, 255, 0.10)"
+
+// Variables
+let requestedStream = false
+let isListening = false
+
+let stream
+let analyser
+let frequencyData
+
+let startTime
+let timestamps = []
 
 async function requestStartAudio() {
   if (!requestedStream) {

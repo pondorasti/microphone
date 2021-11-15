@@ -34,7 +34,7 @@
   </script>
 
   <style>
-    #background {
+    /* #background {
       height: 600px;
       width: 600px;
       opacity: 0.75;
@@ -49,7 +49,7 @@
       z-index: -1;
 
       clip-path: url(#myClip);
-    }
+    } */
 
     @keyframes gradient {
       0% {
@@ -67,15 +67,17 @@
   </style>
 </head>
 
-<body class="h-screen overflow-hidden bg-black flex justify-center items-center" onclick="requestStartAudio()">
-  <div id="background" class="absolute"></div>
-  <canvas width="500px" height="500px"></canvas>
+<body class="h-screen overflow-hidden bg-black flex justify-center items-center">
+  <!-- <div id="background" class="absolute"></div> -->
 
-  <div id="button-container" class="absolute group hidden:opacity-0">
+  <canvas id="background" class="absolute h-full w-full"></canvas>
+  <canvas id="audio" width="500px" height="500px"></canvas>
+
+  <div id="play-button-container" class="absolute group hidden:opacity-0">
     <div
       class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur group-hover:blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-tilt">
     </div>
-    <button class="relative h-28 w-28 bg-black rounded-2xl">
+    <button id="play-button" class="relative h-28 w-28 bg-black rounded-2xl">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 m-auto text-transparent text-white text-opacity-75"
         viewBox="0 0 20 20" fill="none" stroke="currentColor">
         <path fill-rule="evenodd"
@@ -86,7 +88,7 @@
   </div>
 </body>
 
-<script type="text/javascript" src="script.js"></script>
+<script type="module" src="js/index.js"></script>
 <script src="https://unpkg.com/create-conical-gradient@latest/umd/create-conical-gradient.min.js"></script>
 
 </html>
