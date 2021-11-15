@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Visualizer</title>
+
+  <script src="https://cdn-tailwindcss.vercel.app/"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            tilt: 'tilt 5s infinite linear',
+          },
+          keyframes: {
+            tilt: {
+              '0%, 50%, 100%': {
+                transform: 'rotate(0deg)',
+              },
+              '25%': {
+                transform: 'rotate(1.5deg)',
+              },
+              '75%': {
+                transform: 'rotate(-1.5deg)',
+              },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    #background {
+      height: 600px;
+      width: 600px;
+      opacity: 0.75;
+
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+
+      animation: gradient 30s ease infinite;
+      filter: blur(100px);
+
+
+      z-index: -1;
+
+      clip-path: url(#myClip);
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  </style>
+</head>
+
+<body class="h-screen overflow-hidden bg-black flex justify-center items-center" onclick="requestStartAudio()">
+  <div id="background" class="absolute"></div>
+  <canvas width="500px" height="500px"></canvas>
+
+  <div id="button-container" class="absolute group hidden:opacity-0">
+    <div
+      class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur group-hover:blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-tilt">
+    </div>
+    <button class="relative h-28 w-28 bg-black rounded-2xl">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 m-auto text-transparent text-white text-opacity-75"
+        viewBox="0 0 20 20" fill="none" stroke="currentColor">
+        <path fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+          clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+</body>
+
+<script type="text/javascript" src="script.js"></script>
+<script src="https://unpkg.com/create-conical-gradient@latest/umd/create-conical-gradient.min.js"></script>
+
+</html>
