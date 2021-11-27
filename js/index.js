@@ -1,5 +1,4 @@
 // DOM Elements
-const buttonContainer = document.getElementById("play-button-container")
 const button = document.getElementById("play-button")
 const canvas = document.getElementById("audio")
 const ctx = canvas.getContext("2d")
@@ -70,8 +69,13 @@ function startAudio() {
   // get array of frequency data
   frequencyData = new Uint8Array(analyser.frequencyBinCount)
 
-  buttonContainer.style.display = "none"
-  requestAnimationFrame(render)
+  button.classList.add("magictime", "vanishOut")
+  setTimeout(() => {
+    canvas.style.opacity = "1"
+    canvas.classList.add("magictime", "vanishIn")
+  }, 1500)
+
+  setTimeout(() => requestAnimationFrame(render), 500)
 }
 
 function render(timestamp) {
@@ -153,8 +157,10 @@ function canvasRenderer(frequencyData, ctx, centerX, centerY, radius, deltaTime)
     const endX = centerX + height * Math.cos(needleStep * normalizedTime)
     const endY = centerY + height * Math.sin(needleStep * normalizedTime)
 
-    ctx.moveTo(centerX, centerY)
-    ctx.lineTo(endX, endY)
+    if (timestamp.decibelLevel !== 0) {
+      ctx.moveTo(centerX, centerY)
+      ctx.lineTo(endX, endY)
+    }
   })
 
   // Radar - Radial Gradient

@@ -14,29 +14,27 @@
         extend: {
         },
       },
-    },
     }
   </script>
 </head>
 
 <body class="h-screen overflow-hidden bg-black flex justify-center items-center">
   <canvas id="background" class="absolute h-full w-full"></canvas>
-  <canvas id="audio" width="500px" height="500px" class="z-10"></canvas>
+  <canvas id="audio" width="500px" height="500px" class="z-10 opacity-0"></canvas>
 
-  <div id="play-button-container" class="absolute z-20">
-    <button id="play-button" class="relative h-28 w-28 bg-black rounded-2xl">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 m-auto text-transparent text-white text-opacity-75"
-        viewBox="0 0 20 20" fill="none" stroke="currentColor">
-        <path fill-rule="evenodd"
-          d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-          clip-rule="evenodd" />
-      </svg>
-    </button>
-  </div>
+  <button id="play-button" class="absolute z-20 h-28 w-28 bg-gray-800/40 backdrop-blur-md rounded-full">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 m-auto text-white" viewBox="0 0 20 20" fill="none"
+      stroke="currentColor">
+      <path fill-rule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+        clip-rule="evenodd" />
+    </svg>
+  </button>
 </body>
 
-<script type="module" src="js/index.js"></script>
 <script type="module" src="js/gradientRenderer.js"></script>
+<link rel="stylesheet" href="css/magic.min.css">
+<script type="module" src="js/index.js"></script>
 <script src="https://unpkg.com/create-conical-gradient@latest/umd/create-conical-gradient.min.js"></script>
 
 </html>
