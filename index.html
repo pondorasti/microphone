@@ -12,71 +12,18 @@
     tailwind.config = {
       theme: {
         extend: {
-          animation: {
-            tilt: 'tilt 5s infinite linear',
-          },
-          keyframes: {
-            tilt: {
-              '0%, 50%, 100%': {
-                transform: 'rotate(0deg)',
-              },
-              '25%': {
-                transform: 'rotate(1.5deg)',
-              },
-              '75%': {
-                transform: 'rotate(-1.5deg)',
-              },
-            },
-          },
         },
       },
+    },
     }
   </script>
-
-  <style>
-    /* #background {
-      height: 600px;
-      width: 600px;
-      opacity: 0.75;
-
-      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-      background-size: 400% 400%;
-
-      animation: gradient 30s ease infinite;
-      filter: blur(100px);
-
-
-      z-index: -1;
-
-      clip-path: url(#myClip);
-    } */
-
-    @keyframes gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-  </style>
 </head>
 
 <body class="h-screen overflow-hidden bg-black flex justify-center items-center">
-  <!-- <div id="background" class="absolute"></div> -->
-
   <canvas id="background" class="absolute h-full w-full"></canvas>
-  <canvas id="audio" width="500px" height="500px"></canvas>
+  <canvas id="audio" width="500px" height="500px" class="z-10"></canvas>
 
-  <div id="play-button-container" class="absolute group hidden:opacity-0">
-    <div
-      class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur group-hover:blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-500 animate-tilt">
-    </div>
+  <div id="play-button-container" class="absolute z-20">
     <button id="play-button" class="relative h-28 w-28 bg-black rounded-2xl">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 m-auto text-transparent text-white text-opacity-75"
         viewBox="0 0 20 20" fill="none" stroke="currentColor">
@@ -89,6 +36,7 @@
 </body>
 
 <script type="module" src="js/index.js"></script>
+<script type="module" src="js/gradientRenderer.js"></script>
 <script src="https://unpkg.com/create-conical-gradient@latest/umd/create-conical-gradient.min.js"></script>
 
 </html>
