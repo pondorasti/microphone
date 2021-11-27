@@ -1,7 +1,7 @@
 // Source: https://youtu.be/D6EiRSRhsbQ
 import { GlowParticle } from "./glowParticle.js"
 
-const COLORS = [
+const colors = [
   { r: 45, g: 74, b: 227 }, // blue
   { r: 250, g: 255, b: 89 }, // yellow
   { r: 255, g: 104, b: 248 }, // pupple
@@ -53,10 +53,10 @@ class App {
         Math.random() * this.stageWidth,
         Math.random() * this.stageHeight,
         Math.random() * (this.maxRadius - this.minRadius) + this.minRadius,
-        COLORS[curColor]
+        colors[curColor]
       )
 
-      if (++curColor >= COLORS.length) {
+      if (++curColor >= colors.length) {
         curColor = 0
       }
 

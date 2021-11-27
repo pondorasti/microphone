@@ -73,9 +73,9 @@ function startAudio() {
   setTimeout(() => {
     canvas.style.opacity = "1"
     canvas.classList.add("magictime", "vanishIn")
-  }, 1500)
+  }, 1000)
 
-  setTimeout(() => requestAnimationFrame(render), 500)
+  setTimeout(() => requestAnimationFrame(render), 400)
 }
 
 function render(timestamp) {
