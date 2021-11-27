@@ -8,6 +8,7 @@ button.onclick = () => {
 }
 
 // Constants
+const canvasSize = 500
 const fftSize = 512
 const centerX = canvas.width / 2
 const centerY = canvas.height / 2
@@ -79,17 +80,15 @@ function startAudio() {
 }
 
 function render(timestamp) {
-  if (startTime == null) {
-    startTime = timestamp
-  }
+  if (startTime == null) startTime = timestamp
   const deltaTime = timestamp - startTime
 
   analyser.getByteFrequencyData(frequencyData)
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
+  configurePixelDensity()
 
   canvasRenderer(frequencyData, ctx, centerX, centerY, radius, deltaTime)
-
   requestAnimationFrame(render)
 }
 
@@ -208,4 +207,18 @@ function getDecibelLevel(frequencyData) {
   const decibel = 20 * Math.log10(rms) + offset
 
   return Math.max(decibel, 0) // sanity check
+}
+
+function configurePixelDensity() {
+  // set css dimensions
+  canvas.style.width = canvasSize + "px"
+  canvas.style.height = canvasSize + "px"
+
+  const pixelRatio = window.devicePixelRatio
+  console.log(pixelRatio)
+
+  // normalize dimensions based on pixelRatio
+  canvas.width = Math.floor(canvasSize * pixelRatio)
+  canvas.height = Math.floor(canvasSize * pixelRatio)
+  ctx.scale(pixelRatio, pixelRatio)
 }

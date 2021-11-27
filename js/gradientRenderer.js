@@ -3,18 +3,15 @@ import { GlowParticle } from "./glowParticle.js"
 
 const colors = [
   { r: 45, g: 74, b: 227 }, // blue
-  { r: 250, g: 255, b: 89 }, // yellow
   { r: 255, g: 104, b: 248 }, // pupple
   { r: 44, g: 209, b: 252 }, // skyblue
   { r: 54, g: 233, b: 84 }, // green
 ]
 
-class App {
+class GradientRenderer {
   constructor() {
     this.canvas = document.getElementById("background")
     this.ctx = this.canvas.getContext("2d")
-
-    this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1
 
     this.totalParticles = 20
     this.particles = []
@@ -28,17 +25,17 @@ class App {
   }
 
   resize() {
+    // Note: adjusting for pixelRatio is unnecessary and too resource heave for retina displays
+
+    // get viewport size
     this.stageWidth = document.body.clientWidth
     this.stageHeight = document.body.clientHeight
 
-    // console.log(document.body.clientWidth)
-    console.log(this.pixelRatio)
-    console.log(document.body.clientWidth * this.pixelRatio)
-
+    // set dimensions
     this.canvas.width = this.stageWidth
     this.canvas.height = this.stageHeight
-    this.ctx.scale(this.pixelatio, this.pixelRatio)
 
+    // animation effect
     this.ctx.globalCompositeOperation = "saturation"
 
     this.createParticles()
@@ -76,4 +73,4 @@ class App {
   }
 }
 
-new App()
+new GradientRenderer()
