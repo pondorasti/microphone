@@ -103,6 +103,7 @@ function canvasRenderer(frequencyData, ctx, centerX, centerY, radius, deltaTime)
   ctx.beginPath()
   ctx.lineWidth = barWidth
   ctx.strokeStyle = translucentStyle
+  ctx.lineCap = "round"
 
   for (let index = 0; index < numberOfBars; index += 1) {
     const value = frequencyData[index]
@@ -180,7 +181,7 @@ function canvasRenderer(frequencyData, ctx, centerX, centerY, radius, deltaTime)
   // ctx.strokeStyle = translucentStrokeStyle
   ctx.stroke()
 
-  // Rader - Needle
+  // Rader - Needle (deprecated)
   const normalizedDecibelLevel = Math.min(decibelLevel / maxDecibelLevel, 1)
   const needleHeight = radius * normalizedDecibelLevel - needleTopMargin
 
