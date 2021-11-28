@@ -58,6 +58,8 @@ function startAudio() {
   // create nodes
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
   const audioSource = audioCtx.createMediaStreamSource(stream)
+  const volume = audioCtx.createGain()
+  volume.gain.value = 0
 
   // create analyser
   analyser = audioCtx.createAnalyser()
@@ -65,7 +67,8 @@ function startAudio() {
 
   // connect nodes
   audioSource.connect(analyser)
-  analyser.connect(audioCtx.destination)
+  analyser.connect(volume)
+  volume.connect(audioCtx.destination)
 
   // get array of frequency data
   frequencyData = new Uint8Array(analyser.frequencyBinCount)
