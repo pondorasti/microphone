@@ -168,9 +168,11 @@ function canvasRenderer(frequencyData, ctx, centerX, centerY, radius, deltaTime)
 
   // Radar - Radial Gradient
   const normalizedTime = deltaTime % secondsInterval
-  const needleOffset = 0.016 // TODO: calculate offset based on needle width and timestamp.deltaTime
-  const startAngle = (normalizedTime / secondsInterval) * 2 * Math.PI - needleOffset
+  const startAngle = 0.1 * (normalizedTime / secondsInterval) * 2 * Math.PI
   const endAngle = 2 * Math.PI + startAngle
+  const offset = startAngle * 0.1
+  const adjustedStartAngle = startAngle - offset
+  const adjustedEndAngle = 2 * Math.PI + adjustedStartAngle + offset
 
   const gradient = ctx.createConicalGradient(centerX, centerY, startAngle, endAngle)
 
@@ -219,7 +221,6 @@ function configurePixelDensity() {
   canvas.style.height = canvasSize + "px"
 
   const pixelRatio = window.devicePixelRatio
-  console.log(pixelRatio)
 
   // normalize dimensions based on pixelRatio
   canvas.width = Math.floor(canvasSize * pixelRatio)
