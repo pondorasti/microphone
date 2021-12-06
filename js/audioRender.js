@@ -168,11 +168,14 @@ function canvasRenderer(frequencyData, ctx, centerX, centerY, radius, deltaTime)
 
   // Radar - Radial Gradient
   const normalizedTime = deltaTime % secondsInterval
-  const startAngle = 0.1 * (normalizedTime / secondsInterval) * 2 * Math.PI
+  const needleOffset = 0.016
+  const startAngle = (normalizedTime / secondsInterval) * 2 * Math.PI - needleOffset
   const endAngle = 2 * Math.PI + startAngle
-  const offset = startAngle * 0.1
-  const adjustedStartAngle = startAngle - offset
-  const adjustedEndAngle = 2 * Math.PI + adjustedStartAngle + offset
+
+  // Needle Drift Fix Experimentation
+  // const offset = startAngle * 0.1
+  // const adjustedStartAngle = startAngle - offset
+  // const adjustedEndAngle = 2 * Math.PI + adjustedStartAngle + offset
 
   const gradient = ctx.createConicalGradient(centerX, centerY, startAngle, endAngle)
 
